@@ -18,9 +18,9 @@ ZENITH is an early-stage desktop application intended to become an image-process
 - Support for FITS, TIFF, XISF image decoding
 - Swap file system
 - Common integration and rejection algorithms
+- Possible "migration" to GTK for performance
 
 ## Tech Stack
-
 
 - C#
 - .NET
