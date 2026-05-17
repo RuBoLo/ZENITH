@@ -1,4 +1,4 @@
-\# ZENITH
+# ZENITH
 
 ZENITH is an early-stage desktop application intended to become an image-processing workspace for astronomical data. It is being built with Avalonia.
 
@@ -11,7 +11,8 @@ ZENITH is an early-stage desktop application intended to become an image-process
 - Integrated console service
 
 
-\## Planned Features
+
+## Planned Features
 
 
 - Support for FITS, TIFF, XISF image decoding
@@ -29,8 +30,6 @@ ZENITH is an early-stage desktop application intended to become an image-process
 
 
 - .NET SDK
-
-\- Git
 
 ## Build
 
