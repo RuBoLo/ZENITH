@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:general="using:ZENITH.Preferences.Categories.General"
+             x:Class="ZENITH.Preferences.Categories.General.GeneralPreferencesView"
+             x:DataType="general:GeneralPreferencesViewModel">
+
+    <Border Background="{DynamicResource WindowColour}">
+		
+        <StackPanel Orientation="Vertical" Margin="16">
+
+            <TextBlock Text="Startup" FontWeight="Bold"/>
+
+            <ComboBox ItemsSource="{Binding StartupWindowModeOptions}"
+                      SelectedItem="{Binding SelectedStartupWindowModeOption, Mode=TwoWay}"
+                      MinWidth="160">
+
+                <ComboBox.ItemTemplate>
+
+                    <DataTemplate x:DataType="general:StartupWindowModeOption">
+
+                        <TextBlock Text="{Binding Label}"
+                                    ToolTip.Tip="{Binding ToolTip}"/>
+
+                    </DataTemplate>
+
+                </ComboBox.ItemTemplate>
+
+            </ComboBox>
+			
+        </StackPanel>
+
+    </Border>
+
+</UserControl>

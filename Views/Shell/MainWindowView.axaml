@@ -1,0 +1,202 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ZENITH.ViewModels.Shell"
+        x:Class="ZENITH.Views.Shell.MainWindowView"
+        x:DataType="vm:MainWindowViewModel"
+        xmlns:svg="clr-namespace:Avalonia.Svg.Skia;assembly=Svg.Controls.Skia.Avalonia"
+
+        WindowDecorations="None"
+
+        Width="960"
+        Height="560"
+
+        Icon="/Assets/avalonia-logo.ico"
+        Title="ZENITH">
+
+    <Border x:Name="RootBorder"
+            Background="{DynamicResource BarColour}"
+            BorderBrush="{DynamicResource BorderColour}">
+		
+        <Grid RowDefinitions="28, 22, *, 28">
+			
+            <!-- Top Bar -->
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, Auto, *, Auto">
+				
+                <!-- Logo Button -->
+                <Button Grid.Column="0"
+                        Click="About_Click">
+					
+                    <Image Source="/Assets/avalonia-logo.ico"/>
+
+                </Button>
+
+                <!-- Main Menu -->
+                <Menu Grid.Column="1">
+					
+                    <!-- FILE -->
+                    <MenuItem Header="FILE">
+						
+                        <MenuItem Header="Open"
+                                  Click="Open_Click" Tag="Ctrl+O" HotKey="Ctrl+O">
+							
+                        </MenuItem>
+
+                        <Separator/>
+
+                        <MenuItem Header="Exit"
+                                  Click="Exit_Click" Tag="Alt+F4" HotKey="Alt+F4">
+							
+                        </MenuItem>
+
+                    </MenuItem>
+
+                    <!-- EDIT -->
+                    <MenuItem Header="EDIT">
+						
+                        <MenuItem Header="Preferences"
+                                  Click="Preferences_Click" Tag="Ctrl+P" HotKey="Ctrl+P">
+							
+                        </MenuItem>
+
+                    </MenuItem>
+
+                    <!-- VIEW -->
+                    <MenuItem Header="VIEW">
+						
+                        <MenuItem Header="Full Screen"
+                                  Click="FullScreen_Click" Tag="F11">
+							
+                        </MenuItem>
+
+                    </MenuItem>
+
+                    <!-- OPERATORS -->
+                    <MenuItem Header="OPERATORS">
+						
+                        <MenuItem Header="Integration"
+                                  Click="IntegrationOperator_Click">
+							
+                        </MenuItem>
+
+                    </MenuItem>
+
+                    <!-- UTILITIES -->
+                    <MenuItem Header="UTILITIES">
+						
+                        <MenuItem Header="Diffraction &amp; Sampling Calculator"
+                                  Click="DiffractionSamplingUtility_Click">
+							
+                        </MenuItem>
+
+                    </MenuItem>
+
+                    <!-- RESOURCES -->
+                    <MenuItem Header="RESOURCES">
+						
+                        <MenuItem Header="About ZENITH"
+                                  Click="About_Click">
+							
+                        </MenuItem>
+
+                        <MenuItem Header="About Avalonia"
+                                  Click="AboutAvalonia_Click">
+							
+                        </MenuItem>
+
+                    </MenuItem>
+
+                </Menu>
+
+                <!-- Drag Bar -->
+                <Border Grid.Column="2" PointerPressed="DragBar_PointerPressed" Classes="drag-bar">
+					
+                    <Border Classes="drag-hatch"/>
+
+                    <Border.ContextMenu>
+						
+                        <ContextMenu>
+						
+                            <MenuItem Header="Minimise" Click="Minimise_Click">
+							
+                            </MenuItem>
+
+                            <MenuItem x:Name="MaximiseMenuItem" Click="Maximise_Click">
+							
+                            </MenuItem>
+
+                            <MenuItem Header="Full Screen" Click="FullScreen_Click">
+								
+                            </MenuItem>
+
+                            <Separator/>
+
+                            <MenuItem Header="Exit" Click="Exit_Click">
+							
+                            </MenuItem>
+
+                        </ContextMenu>
+
+                    </Border.ContextMenu>
+
+                </Border>
+
+                <!-- Window Buttons -->
+                <StackPanel Grid.Column="3" Orientation="Horizontal">
+					
+                    <Button Click="Minimise_Click" Classes="window-btn">
+
+                        <svg:Svg Path="/Assets/ButtonIcons/minimize_button_icon.svg"
+                                 Width="16"
+                                 Height="16"/>
+
+                    </Button>
+
+                    <Button Click="Maximise_Click" Classes="window-btn">
+
+                        <svg:Svg Path="/Assets/ButtonIcons/maximize_button_icon.svg"
+                                 Width="16"
+                                 Height="16"/>
+
+                    </Button>
+
+                    <Button Click="Exit_Click" Classes="window-btn exit">
+                        
+                        <svg:Svg Path="/Assets/ButtonIcons/exit_button_icon.svg"
+                                 Width="16"
+                                 Height="16"/>
+
+                    </Button>
+
+                </StackPanel>
+
+            </Grid>
+
+            <ContentControl Grid.Row="1" Content="{Binding ToolBar}">
+				
+            </ContentControl>
+
+            <Grid Grid.Row="2">
+
+                <ContentControl Content="{Binding Workspace}"
+                                DoubleTapped="Workspace_DoubleTapped">
+				
+                </ContentControl>
+
+                <ContentControl Content="{Binding Console}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="0,0,12,12">
+
+                </ContentControl>
+
+            </Grid>
+
+            <ContentControl Grid.Row="3" Content="{Binding BottomBar}">
+				
+            </ContentControl>
+
+        </Grid>
+
+    </Border>
+
+</Window>

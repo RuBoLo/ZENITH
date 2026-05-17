@@ -1,0 +1,224 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ZENITH.ViewModels.Utilities"
+        xmlns:svg="clr-namespace:Avalonia.Svg.Skia;assembly=Svg.Controls.Skia.Avalonia"
+        x:Class="ZENITH.Views.Utilities.DiffractionSamplingCalculatorView"
+        x:DataType="vm:DiffractionSamplingCalculatorViewModel"
+
+        WindowDecorations="None"
+
+        Width="460"
+        Height="370"
+
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Diffraction &amp; Sampling Calculator">
+
+    <Border Background="{DynamicResource BarColour}"
+            BorderBrush="{DynamicResource BorderColour}"
+            BorderThickness="1">
+
+        <Grid RowDefinitions="28, *, 28">
+
+            <!-- Top Bar -->
+            <Grid Grid.Row="0" ColumnDefinitions="*, Auto">
+
+                <!-- Window Title and Drag Bar -->
+                <Border Grid.Column="0"
+                        PointerPressed="DragBar_PointerPressed"
+                        Background="Transparent">
+
+                    <TextBlock Text="Diffraction &amp; Sampling Calculator"
+                               FontSize="12"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="8,0,0,0"/>
+
+                </Border>
+
+                <!-- Window Buttons -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+
+                    <Button Click="Minimize_Click" Classes="window-btn">
+
+                        <svg:Svg Path="/Assets/ButtonIcons/minimize_button_icon.svg"
+                                 Width="16"
+                                 Height="16"/>
+
+                    </Button>
+
+                    <Button Click="Close_Click" Classes="window-btn exit">
+
+                        <svg:Svg Path="/Assets/ButtonIcons/exit_button_icon.svg"
+                                 Width="16"
+                                 Height="16"/>
+
+                    </Button>
+
+                </StackPanel>
+
+            </Grid>
+
+            <!-- Main Area -->
+            <Border Grid.Row="1"
+                    Background="{DynamicResource WindowColour}"
+                    Padding="12">
+
+                <Grid ColumnDefinitions="*, 16, *">
+
+                    <StackPanel Grid.Column="0"
+                                Orientation="Vertical"
+                                Spacing="4">
+
+                        <TextBlock Text="Diffraction"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBlock Text="Aperture (mm):"
+                                   FontSize="11"/>
+
+                        <TextBox Text="{Binding Aperture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Classes="monospace-input"
+                                 PlaceholderText="Insert aperture"/>
+
+                        <TextBlock Text="Wavelength (nm):"
+                                   FontSize="11"
+                                   Margin="0,4,0,0"/>
+
+                        <TextBox Text="{Binding Wavelength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Classes="monospace-input"
+                                 PlaceholderText="Insert wavelength"/>
+
+                        <TextBlock Text="Sampling"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Margin="0,8,0,0"/>
+
+                        <TextBlock Text="Focal length (mm):"
+                                   FontSize="11"/>
+
+                        <TextBox Text="{Binding FocalLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Classes="monospace-input"
+                                 PlaceholderText="Insert focal length"/>
+
+                        <TextBlock Text="Pixel pitch (&#181;m):"
+                                   FontSize="11"
+                                   Margin="0,4,0,0"/>
+
+                        <TextBox Text="{Binding PixelPitch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Classes="monospace-input"
+                                 PlaceholderText="Insert pixel pitch"/>
+
+                        <TextBlock Text="Seeing (arcsec):"
+                                   FontSize="11"
+                                   Margin="0,4,0,0"/>
+
+                        <TextBox Text="{Binding Seeing, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Classes="monospace-input"
+                                 PlaceholderText="Insert seeing"/>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2"
+                                Orientation="Vertical"
+                                Spacing="8">
+
+                        <TextBlock Text="Results"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"/>
+
+                        <Grid ColumnDefinitions="Auto, *"
+                              RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+                              ColumnSpacing="8"
+                              RowSpacing="6">
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="Rayleigh:"
+                                       FontSize="11"/>
+
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="1"
+                                       Text="{Binding RayleighLimitOutput}"
+                                       TextWrapping="Wrap"
+                                       FontSize="11"/>
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="0"
+                                       Text="Dawes:"
+                                       FontSize="11"/>
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding DawesLimitOutput}"
+                                       TextWrapping="Wrap"
+                                       FontSize="11"/>
+
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="0"
+                                       Text="Focal ratio:"
+                                       FontSize="11"/>
+
+                            <TextBlock Grid.Row="2"
+                                       Grid.Column="1"
+                                       Text="{Binding FocalRatioOutput}"
+                                       TextWrapping="Wrap"
+                                       FontSize="11"/>
+
+                            <TextBlock Grid.Row="3"
+                                       Grid.Column="0"
+                                       Text="Pixel scale:"
+                                       FontSize="11"/>
+
+                            <TextBlock Grid.Row="3"
+                                       Grid.Column="1"
+                                       Text="{Binding PixelScaleOutput}"
+                                       TextWrapping="Wrap"
+                                       FontSize="11"/>
+
+                            <TextBlock Grid.Row="4"
+                                       Grid.Column="0"
+                                       Text="Sampling:"
+                                       FontSize="11"/>
+
+                            <TextBlock Grid.Row="4"
+                                       Grid.Column="1"
+                                       Text="{Binding SamplingOutput}"
+                                       Foreground="{Binding SamplingBrush}"
+                                       TextWrapping="Wrap"
+                                       FontSize="11"/>
+
+                        </Grid>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </Border>
+
+            <!-- Bottom Bar -->
+            <Border Grid.Row="2" Padding="4">
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+
+                    <Button Classes="control-btn"
+                            Margin="2"
+                            Command="{Binding ExecuteCommand}">
+                        Execute
+                    </Button>
+
+                    <Button Click="Close_Click"
+                            Classes="control-btn"
+                            Margin="2">
+                        Cancel
+                    </Button>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+
+    </Border>
+
+</Window>

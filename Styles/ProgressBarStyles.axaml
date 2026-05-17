@@ -1,0 +1,34 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="ProgressBar">
+        <Setter Property="MinHeight" Value="6"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="#F0F0F0"
+                        BorderBrush="#ADADAD"
+                        BorderThickness="1"
+                        ClipToBounds="True">
+
+                    <Grid>
+                        <Border x:Name="PART_Indicator"
+                                Background="#0078D7"
+                                HorizontalAlignment="Left"
+                                Width="{Binding TemplateSettings.ContainerWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
+                    </Grid>
+
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <Style Selector="ProgressBar:disabled /template/ Border">
+        <Setter Property="Background" Value="#F3F3F3"/>
+        <Setter Property="BorderBrush" Value="#D0D0D0"/>
+    </Style>
+
+    <Style Selector="ProgressBar:disabled /template/ Grid > Border">
+        <Setter Property="Background" Value="#838383"/>
+    </Style>
+
+</Styles>

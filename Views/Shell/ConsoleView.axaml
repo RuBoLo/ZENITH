@@ -1,0 +1,133 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:console="using:ZENITH.Services.Console"
+             xmlns:svg="clr-namespace:Avalonia.Svg.Skia;assembly=Svg.Controls.Skia.Avalonia"
+             x:Class="ZENITH.Views.Shell.ConsoleView"
+             x:DataType="console:IConsoleService"
+
+             Width="420"
+             Height="280"
+
+             IsVisible="{Binding IsVisible}">
+
+    <Border Classes="console-panel" Background="{DynamicResource BarColour}">
+
+        <!-- Top Bar -->
+        <Grid RowDefinitions="28,*,28">
+
+            <Grid Grid.Row="0"
+                  ColumnDefinitions="Auto,*,Auto,Auto">
+
+                <TextBlock Grid.Column="0"
+                           Text="Console"
+                           FontSize="12"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"
+                           Margin="8,0,0,0"/>
+
+                <TextBlock Grid.Column="1"
+                           Text="{Binding Entries.Count, StringFormat='{}{0} lines'}"
+                           Classes="console-count"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           Margin="8,0"/>
+
+                <!-- Clear Button -->
+                <Button Grid.Column="2"
+                        Content="Clear"
+                        Classes="control-btn"
+                        Command="{Binding ClearCommand}"
+                        VerticalAlignment="Center"
+                        Margin="0,0,4,0"/>
+
+                <!-- Exit Button -->
+                <Button Grid.Column="3"
+                        Command="{Binding HideCommand}"
+                        Classes="window-btn exit">
+                        
+                        <svg:Svg Path="/Assets/ButtonIcons/exit_button_icon.svg"
+                                 Width="16"
+                                 Height="16"/>
+
+                    </Button>
+
+            </Grid>
+
+            <Border Grid.Row="1"
+                    Classes="console-output">
+
+                <ScrollViewer x:Name="EntriesScrollViewer"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+
+                    <ItemsControl ItemsSource="{Binding Entries}">
+
+                        <ItemsControl.ItemTemplate>
+
+                            <DataTemplate x:DataType="console:ConsoleEntry">
+
+                                <Grid ColumnDefinitions="58,*"
+                                      Margin="8,2,6,2">
+
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding TimestampText}"
+                                               Classes="console-time"
+                                               VerticalAlignment="Top"/>
+
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding Text}"
+                                               Classes="console-line"
+                                               Classes.system="{Binding IsSystem}"
+                                               Classes.command="{Binding IsCommand}"
+                                               Classes.error="{Binding IsError}"
+                                               Classes.warning="{Binding IsWarning}"
+                                               Classes.success="{Binding IsSuccess}"
+                                               TextWrapping="Wrap"/>
+
+                                </Grid>
+
+                            </DataTemplate>
+
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+
+                </ScrollViewer>
+
+            </Border>
+
+            <Border Grid.Row="2">
+
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                      Margin="7">
+
+                    <TextBlock Grid.Column="0"
+                               Text=">"
+                               Classes="console-prompt"
+                               VerticalAlignment="Center"
+                               Margin="0,0,7,0"/>
+
+                    <TextBox Grid.Column="1"
+                             x:Name="InputTextBox"
+                             Text="{Binding InputText, Mode=TwoWay}"
+                             Classes="monospace-input"
+                             KeyDown="InputTextBox_KeyDown"
+                             PlaceholderText="Command"
+                             AcceptsReturn="False"
+                             Margin="0,0,7,0"/>
+
+                    <Button Grid.Column="2"
+                            Content="Execute"
+                            Classes="control-btn"
+                            Command="{Binding ExecuteCommand}"
+                            VerticalAlignment="Center"/>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Border>
+
+</UserControl>

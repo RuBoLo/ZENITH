@@ -1,0 +1,70 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="RadioButton">
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=TextColour}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=BorderColour}"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid ColumnDefinitions="Auto, *"
+                      Background="{TemplateBinding Background}">
+
+                    <Border Name="PART_CheckOuter"
+                            Width="14"
+                            Height="14"
+                            Margin="0,0,7,0"
+                            Background="#FFFFFF"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="1"
+                            VerticalAlignment="Center">
+
+                        <Border Name="PART_CheckInner"
+                                Width="8"
+                                Height="8"
+                                Background="Transparent"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                    </Border>
+
+                    <ContentPresenter Grid.Column="1"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <Style Selector="RadioButton:pointerover /template/ Border#PART_CheckOuter">
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=ImageSelectedBorderColour}"/>
+    </Style>
+
+    <Style Selector="RadioButton:checked /template/ Border#PART_CheckOuter">
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=ImageSelectedBorderColour}"/>
+    </Style>
+
+    <Style Selector="RadioButton:checked /template/ Border#PART_CheckInner">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=ImageSelectedBorderColour}"/>
+    </Style>
+
+    <Style Selector="RadioButton:disabled">
+        <Setter Property="Foreground" Value="#838383"/>
+        <Setter Property="BorderBrush" Value="#D0D0D0"/>
+    </Style>
+
+    <Style Selector="RadioButton:disabled /template/ Border#PART_CheckOuter">
+        <Setter Property="Background" Value="#F3F3F3"/>
+    </Style>
+
+    <Style Selector="RadioButton:checked:disabled /template/ Border#PART_CheckInner">
+        <Setter Property="Background" Value="#838383"/>
+    </Style>
+
+</Styles>

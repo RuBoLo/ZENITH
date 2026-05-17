@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:ZENITH.ViewModels.Shell"
+             xmlns:workspaceViews="using:ZENITH.Views.Workspace"
+             x:Class="ZENITH.Views.Shell.WorkspaceView"
+             x:DataType="vm:WorkspaceViewModel">
+
+    <Border Background="#555555">
+		
+        <ItemsControl ItemsSource="{Binding Items}">
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <workspaceViews:WorkspaceWindowView/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+            <ItemsControl.Styles>
+                <Style Selector="ContentPresenter">
+                    <Setter Property="Canvas.Left" Value="{ReflectionBinding X}"/>
+                    <Setter Property="Canvas.Top" Value="{ReflectionBinding Y}"/>
+                    <Setter Property="Canvas.ZIndex" Value="{ReflectionBinding ZIndex}"/>
+                </Style>
+            </ItemsControl.Styles>
+
+            <ItemsControl.ItemsPanel>
+
+                <ItemsPanelTemplate>
+
+                    <Canvas/>
+
+                </ItemsPanelTemplate>
+
+            </ItemsControl.ItemsPanel>
+
+        </ItemsControl>
+
+    </Border>
+
+</UserControl>

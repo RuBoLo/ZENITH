@@ -1,0 +1,229 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Context Menu Surface -->
+    <Style Selector="ContextMenu">
+        <Setter Property="WindowManagerAddShadowHint" Value="True"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{DynamicResource ResourceKey=WindowColour}"
+                        BorderBrush="{DynamicResource ResourceKey=BorderColour}"
+                        BorderThickness="1">
+
+                    <ItemsPresenter Name="PART_ItemsPresenter"/>
+
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <!-- Top-Level Template -->
+    <Style Selector="Menu > MenuItem">
+
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border Name="PART_HeaderRoot"
+                            Background="Transparent"
+                            VerticalAlignment="Center"
+                            BorderBrush="Transparent"
+                            BorderThickness="1"
+                            Margin="4,0,4,0"
+                            Padding="3,2">
+                        <ContentPresenter Content="{TemplateBinding Header}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                    </Border>
+                    <Popup Name="PART_Popup"
+                           IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}"
+                           PlacementTarget="{TemplateBinding}"
+                           WindowManagerAddShadowHint="True">
+
+                        <Border Background="{DynamicResource ResourceKey=WindowColour}"
+                                BorderBrush="{DynamicResource ResourceKey=BorderColour}"
+                                BorderThickness="1">
+
+                            <ItemsPresenter Name="PART_ItemsPresenter"/>
+
+                        </Border>
+                    </Popup>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <!-- Top-level Items -->
+    <Style Selector="Menu > MenuItem /template/ Border#PART_HeaderRoot ContentPresenter">
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=TextColour}"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+    <Style Selector="Menu > MenuItem:pointerover /template/ Border#PART_HeaderRoot">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=ParentMenuHoverColour}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=BorderColour}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Margin" Value="4,0,4,0"/>
+        <Setter Property="Padding" Value="3,2"/>
+    </Style>
+    <Style Selector="Menu > MenuItem:pointerover /template/ Border#PART_HeaderRoot ContentPresenter">
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=TextColour}"/>
+    </Style>
+    <Style Selector="Menu > MenuItem:open /template/ Border#PART_HeaderRoot ContentPresenter">
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=TextColour}"/>
+    </Style>
+
+
+    <!-- Context Menu Items -->
+    <Style Selector="ContextMenu > MenuItem">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="MinHeight" Value="22"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border Name="PART_HeaderRoot" Background="Transparent">
+                        <Grid ColumnDefinitions="24, *, Auto">
+                            <Grid Grid.Column="0">
+                                <ContentPresenter Content="{TemplateBinding Icon}"
+                                                  Width="18"
+                                                  Height="18"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+
+                                <Border Name="PART_CheckIndicator"
+                                        Width="8"
+                                        Height="8"
+                                        Background="Transparent"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        IsVisible="{TemplateBinding IsChecked}"/>
+                            </Grid>
+
+                            <ContentPresenter Grid.Column="1"
+                                              Content="{TemplateBinding Header}"
+                                              VerticalAlignment="Center"/>
+                            <ContentPresenter Grid.Column="2"
+                                              Content="{TemplateBinding Tag}"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Center"
+                                              Margin="12,0,0,0"/>
+                        </Grid>
+                    </Border>
+                    <Popup Name="PART_Popup"
+                           IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}"
+                           PlacementTarget="{TemplateBinding}"
+                           WindowManagerAddShadowHint="True">
+
+                        <Border Background="{DynamicResource ResourceKey=WindowColour}"
+                                BorderBrush="{DynamicResource ResourceKey=BorderColour}"
+                                BorderThickness="1">
+
+                            <ItemsPresenter Name="PART_ItemsPresenter"/>
+
+                        </Border>
+                    </Popup>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <Style Selector="ContextMenu > MenuItem /template/ Border#PART_HeaderRoot ContentPresenter">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+    <Style Selector="ContextMenu > MenuItem:pointerover /template/ Border#PART_HeaderRoot ContentPresenter">
+        <Setter Property="Foreground" Value="OrangeRed"/>
+    </Style>
+    <Style Selector="ContextMenu > MenuItem:open /template/ Border#PART_HeaderRoot ContentPresenter">
+        <Setter Property="Foreground" Value="DarkGreen"/>
+    </Style>
+    <Style Selector="ContextMenu > MenuItem:checked /template/ Border#PART_HeaderRoot">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=ParentMenuHoverColour}"/>
+    </Style>
+
+    <Style Selector="Separator">
+        <Setter Property="MinHeight" Value="4"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid Height="4">
+
+                    <Border Height="1"
+                            Margin="4,3,4,3"
+                            Background="{DynamicResource ResourceKey=BorderColour}"/>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+
+    <!-- Child Template -->
+    <Style Selector="MenuItem > MenuItem">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="MinHeight" Value="22"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel>
+                    <Border Name="PART_HeaderRoot" Background="Transparent">
+                        <Grid ColumnDefinitions="24, *, Auto">
+                            <Grid Grid.Column="0">
+                                <ContentPresenter Content="{TemplateBinding Icon}"
+                                                  Width="18"
+                                                  Height="18"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+
+                                <Border Name="PART_CheckIndicator"
+                                        Width="8"
+                                        Height="8"
+                                        Background="Transparent"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        IsVisible="{TemplateBinding IsChecked}"/>
+                            </Grid>
+
+                            <ContentPresenter Grid.Column="1"
+                                              Content="{TemplateBinding Header}"
+                                              VerticalAlignment="Center"/>
+                            <ContentPresenter Grid.Column="2"
+                                              Content="{TemplateBinding Tag}"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Center"
+                                              Margin="12,0,0,0"/>
+                        </Grid>
+                    </Border>
+                    <Popup Name="PART_Popup"
+                           IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}"
+                           PlacementTarget="{TemplateBinding}"
+                           WindowManagerAddShadowHint="True">
+
+                        <Border Background="{DynamicResource ResourceKey=WindowColour}"
+                                BorderBrush="{DynamicResource ResourceKey=BorderColour}"
+                                BorderThickness="1">
+
+                            <ItemsPresenter Name="PART_ItemsPresenter"/>
+
+                        </Border>
+                    </Popup>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <!-- Child Items -->
+    <Style Selector="MenuItem > MenuItem /template/ Border#PART_HeaderRoot ContentPresenter">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+    <Style Selector="MenuItem > MenuItem:pointerover /template/ Border#PART_HeaderRoot ContentPresenter">
+        <Setter Property="Foreground" Value="OrangeRed"/>
+    </Style>
+    <Style Selector="MenuItem > MenuItem:open /template/ Border#PART_HeaderRoot ContentPresenter">
+        <Setter Property="Foreground" Value="DarkGreen"/>
+    </Style>
+    <Style Selector="MenuItem > MenuItem:checked /template/ Border#PART_HeaderRoot">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=ParentMenuHoverColour}"/>
+    </Style>
+
+</Styles>

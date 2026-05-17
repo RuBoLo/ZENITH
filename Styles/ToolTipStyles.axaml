@@ -1,0 +1,30 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="ToolTip">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=WindowColour}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=TextColour}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=BorderColour}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="8,5"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="MaxWidth" Value="280"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BoxShadow="0 2 8 0 #55000000"
+                        Padding="{TemplateBinding Padding}">
+
+                    <ContentPresenter Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+</Styles>

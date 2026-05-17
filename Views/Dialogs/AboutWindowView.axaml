@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ZENITH.Views.Dialogs.AboutWindowView"
+
+        WindowDecorations="None"
+        WindowStartupLocation="CenterOwner"
+
+        Width="380"
+        Height="260"
+
+        Icon="/Assets/avalonia-logo.ico"
+        Title="About ZENITH">
+
+    <Border Background="{DynamicResource WindowColour}"
+            BorderBrush="{DynamicResource BorderColour}"
+            BorderThickness="1">
+		
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+            <Image Source="/Assets/avalonia-logo.ico"
+                   Width="40"
+                   Height="40"/>
+
+            <TextBlock Text="ZENITH"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock x:Name="VersionTextBlock"
+                       HorizontalAlignment="Center"/>
+
+            <Button Click="Close_Click"
+                    Classes="control-btn"
+                    HorizontalAlignment="Center">
+				Close
+            </Button>
+			
+        </StackPanel>
+
+    </Border>
+
+</Window>

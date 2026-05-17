@@ -1,0 +1,146 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:svg="clr-namespace:Avalonia.Svg.Skia;assembly=Svg.Controls.Skia.Avalonia"
+             xmlns:documents="using:ZENITH.ViewModels.Documents"
+             xmlns:local="using:ZENITH.Views.Documents"
+             x:Class="ZENITH.Views.Documents.ImageDocumentView"
+             x:DataType="documents:ImageDocumentViewModel">
+
+    <Border Background="{DynamicResource WindowColour}"
+            ClipToBounds="True">
+    
+        <Border.ContextMenu>
+
+            <ContextMenu>
+
+                <MenuItem Header="Zoom In"
+                          Command="{Binding ZoomInCommand}"
+                          Tag="Ctrl++"
+                          HotKey="Ctrl++">
+                
+                </MenuItem>
+
+                <MenuItem Header="Zoom Out"
+                          Command="{Binding ZoomOutCommand}"
+                          Tag="Ctrl+-"
+                          HotKey="Ctrl+-">
+                
+                </MenuItem>
+
+                <MenuItem Header="Channels">
+
+                    <MenuItem Header="RGB"
+                              Command="{Binding ShowRgbCommand}"
+                              IsChecked="{Binding IsRgbView, Mode=OneWay}"
+                              ToggleType="Radio">
+                    
+                    </MenuItem>
+
+                    <MenuItem Header="R"
+                              Command="{Binding ShowRedCommand}"
+                              IsChecked="{Binding IsRedView, Mode=OneWay}"
+                              ToggleType="Radio">
+
+                        <MenuItem.Icon>
+
+                            <svg:Svg Path="/Assets/ButtonIcons/red.svg"
+                                     Width="14"
+                                     Height="14"/>
+
+                        </MenuItem.Icon>
+
+                    </MenuItem>
+
+                    <MenuItem Header="G"
+                              Command="{Binding ShowGreenCommand}"
+                              IsChecked="{Binding IsGreenView, Mode=OneWay}"
+                              ToggleType="Radio">
+                    
+                    </MenuItem>
+
+                    <MenuItem Header="B"
+                              Command="{Binding ShowBlueCommand}"
+                              IsChecked="{Binding IsBlueView, Mode=OneWay}"
+                              ToggleType="Radio">
+                    
+                    </MenuItem>
+
+                    <MenuItem Header="Inverted"
+                              Command="{Binding ShowInvertedCommand}"
+                              IsChecked="{Binding IsInvertedView, Mode=OneWay}"
+                              ToggleType="Radio">
+                    
+                    </MenuItem>
+
+                    <MenuItem Header="Luminance"
+                              Command="{Binding ShowLuminanceCommand}"
+                              IsChecked="{Binding IsLuminanceView, Mode=OneWay}"
+                              ToggleType="Radio">
+
+                    </MenuItem>
+
+                </MenuItem>
+
+            </ContextMenu>
+
+        </Border.ContextMenu>
+
+        <Grid ColumnDefinitions="18, *, 2, 16"
+              RowDefinitions="*, 2, 16">
+		
+            <Border Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Background="{DynamicResource WindowColour}"/>
+
+            <Border Grid.Row="0"
+                    Grid.Column="1"
+                    x:Name="Viewport"
+                    Background="#121212"
+                    ClipToBounds="True">
+                <local:ImageViewportControl x:Name="ImageViewport"
+                                            Source="{Binding Image}"
+                                            HorizontalAlignment="Stretch"
+                                            VerticalAlignment="Stretch"
+                                            ClipToBounds="True"
+                                            RenderOptions.BitmapInterpolationMode="HighQuality"/>
+            </Border>
+
+            <Border Grid.Column="2" Grid.Row="0" Background="{DynamicResource WindowColour}"/>
+
+            <Border Grid.Column="1" Grid.Row="1" Background="{DynamicResource WindowColour}"/>
+
+            <Border Grid.Column="2" Grid.Row="1" Background="{DynamicResource WindowColour}"/>
+
+            <Border Grid.Column="3" Grid.Row="0">
+				
+                <ScrollBar Orientation="Vertical"
+                           Minimum="0"
+                           Maximum="{Binding VerticalScrollMaximum}"
+                           Value="{Binding VerticalScrollValue, Mode=TwoWay}"
+                           ViewportSize="{Binding VerticalViewportSize}"
+                           SmallChange="1"
+                           LargeChange="{Binding VerticalLargeChange}"/>
+
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="2">
+				
+                <ScrollBar Orientation="Horizontal"
+                           Minimum="0"
+                           Maximum="{Binding HorizontalScrollMaximum}"
+                           Value="{Binding HorizontalScrollValue, Mode=TwoWay}"
+                           ViewportSize="{Binding HorizontalViewportSize}"
+                           SmallChange="1"
+                           LargeChange="{Binding HorizontalLargeChange}"/>
+
+            </Border>
+
+            <Border Grid.Column="3" Grid.Row="2" Background="{DynamicResource WindowColour}"/>
+
+        </Grid>
+
+
+    </Border>
+
+</UserControl>

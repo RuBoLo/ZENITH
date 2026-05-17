@@ -1,0 +1,126 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ZENITH.Preferences"
+        xmlns:svg="clr-namespace:Avalonia.Svg.Skia;assembly=Svg.Controls.Skia.Avalonia"
+        xmlns:appearance="using:ZENITH.Preferences.Categories.Appearance"
+        xmlns:general="using:ZENITH.Preferences.Categories.General"
+        x:Class="ZENITH.Preferences.PreferencesWindowView"
+        x:DataType="vm:PreferencesWindowViewModel"
+
+        WindowDecorations="None"
+        WindowStartupLocation="CenterOwner"
+
+        Width="600"
+        Height="420"
+
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Preferences">
+
+    <Window.DataTemplates>
+
+        <DataTemplate DataType="general:GeneralPreferencesViewModel">
+
+            <general:GeneralPreferencesView/>
+
+        </DataTemplate>
+
+        <DataTemplate DataType="appearance:AppearancePreferencesViewModel">
+
+            <appearance:AppearancePreferencesView/>
+
+        </DataTemplate>
+
+    </Window.DataTemplates>
+
+    <Border Background="{DynamicResource BarColour}"
+            BorderBrush="{DynamicResource BorderColour}"
+            BorderThickness="1">
+    
+        <Grid RowDefinitions="28, *, 28">
+			
+            <!-- Top Bar -->
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
+            
+                <!-- Window Title -->
+                <TextBlock Grid.Column="0"
+                           Text="Preferences"
+                           FontSize="12"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"
+                           Margin="8,0,0,0"/>
+
+                <!-- Drag Bar -->
+                <Border Grid.Column="1" PointerPressed="DragBar_PointerPressed" Classes="drag-bar">
+					
+                    <Border Classes="drag-hatch"/>
+
+                </Border>
+
+                <!-- Close Button -->
+                <Button Grid.Column="2" Click="Close_Click" Classes="window-btn exit">
+                        
+                    <svg:Svg Path="/Assets/ButtonIcons/exit_button_icon.svg"
+                             Width="16"
+                             Height="16"/>
+
+                </Button>
+
+            </Grid>
+
+            <Grid Grid.Row="1" ColumnDefinitions="150, 5, *">
+				
+                <ListBox Grid.Column="0"
+                         ItemsSource="{Binding Categories}"
+                         SelectedItem="{Binding SelectedCategory}"
+                         Background="{DynamicResource WindowColour}">
+                
+                    <ListBox.ItemTemplate>
+						
+                        <DataTemplate x:DataType="vm:PreferencesCategory">
+							
+                            <TextBlock Text="{Binding Title}">
+								
+                            </TextBlock>
+
+                        </DataTemplate>
+
+                    </ListBox.ItemTemplate>
+                
+                </ListBox>
+
+                <Border Grid.Column="2">
+					
+                    <ContentControl Content="{Binding SelectedCategory.ViewModel}">
+						
+                    </ContentControl>
+
+                </Border>
+
+            </Grid>
+
+            <Border Grid.Row="2" Padding="4">
+				
+                <StackPanel 
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+
+                    <Button Click="Apply_Click"
+                            Classes="control-btn"
+                            Margin="2"
+                            IsEnabled="{Binding HasChanges}">
+					    Apply
+                    </Button>
+
+                    <Button Click="Close_Click" Classes="control-btn" Margin="2">
+					    Cancel
+                    </Button>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+    
+    </Border>
+
+</Window>

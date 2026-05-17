@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:documents="using:ZENITH.ViewModels.Documents"
+             xmlns:vm="using:ZENITH.ViewModels.Shell"
+             xmlns:svg="clr-namespace:Avalonia.Svg.Skia;assembly=Svg.Controls.Skia.Avalonia"
+             x:DataType="vm:BottomBarViewModel"
+
+             x:Class="ZENITH.Views.Shell.BottomBarView">
+
+    <Border Background="{DynamicResource BarColour}"
+            BorderBrush="{DynamicResource BorderColour}"
+            BorderThickness="0,1,0,0">
+        <Grid ColumnDefinitions="Auto,220,*,Auto">
+            <TextBlock Grid.Column="0"
+                       Text="Images"
+                       Foreground="{DynamicResource TextColour}"
+                       VerticalAlignment="Center"
+                       Margin="8,0,6,0"/>
+
+            <ComboBox Grid.Column="1"
+                      ItemsSource="{Binding Documents}"
+                      SelectedItem="{Binding SelectedDocument, Mode=TwoWay}"
+                      Classes="big"
+                      MinWidth="180"
+                      VerticalAlignment="Center">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="documents:ImageDocumentViewModel">
+                        <TextBlock Text="{Binding Title}"
+                                   TextTrimming="CharacterEllipsis"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button Grid.Column="3"
+                    Command="{Binding Console.ToggleVisibilityCommand}"
+                    Classes.active="{Binding Console.IsVisible}"
+                    Margin="6,0,8,0"
+                    VerticalAlignment="Center">
+            
+                <svg:Svg Path="/Assets/console_icon.svg"
+                         Width="20"
+                         Height="20"/>
+            
+            </Button>
+        </Grid>
+    </Border>
+
+</UserControl>

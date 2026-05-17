@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ZENITH.Views.Dialogs.AboutAvaloniaWindowView"
+
+        WindowDecorations="None"
+        WindowStartupLocation="CenterOwner"
+
+        Width="480"
+        Height="360"
+
+        Icon="/Assets/avalonia-logo.ico"
+        Title="About Avalonia">
+
+    <Border Background="{DynamicResource ResourceKey=WindowColour}"
+            BorderBrush="{DynamicResource ResourceKey=BorderColour}"
+            BorderThickness="1">
+		
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+            <Image Source="/Assets/avalonia-logo.ico"
+                   Width="40"
+                   Height="40"/>
+
+            <TextBlock>
+				This software uses Avalonia version 12.0.0 and is built on .NET 8.0.
+            </TextBlock>
+
+            <TextBlock>
+				Avalonia is a cross-platform UI framework for .NET, enabling the creation of native applications for Windows, macOS, Linux, iOS, Android, and WebAssembly from a single codebase.
+            </TextBlock>
+
+            <TextBlock>
+				Avalonia uses its own rendering pipeline built on Skia, providing pixel-perfect consistency across all platforms.
+            </TextBlock>
+
+            <TextBlock>
+				Avalonia is open source and licensed under the MIT License.
+            </TextBlock>
+
+            <Button Click="Close_Click">
+				Close
+            </Button>
+			
+        </StackPanel>
+
+    </Border>
+
+</Window>

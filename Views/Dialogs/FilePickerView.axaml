@@ -1,0 +1,158 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ZENITH.ViewModels.Dialogs"
+        xmlns:svg="clr-namespace:Avalonia.Svg.Skia;assembly=Svg.Controls.Skia.Avalonia"
+        xmlns:filePicker="using:ZENITH.Services.FilePicker"
+        x:Class="ZENITH.Views.Dialogs.FilePickerView"
+        x:DataType="vm:FilePickerViewModel"
+
+        x:Name="Root"
+
+        WindowDecorations="None"
+
+        Width="800"
+        Height="500"
+
+        Icon="/Assets/avalonia-logo.ico"
+        Title="File Picker">
+
+    <Border Background="{DynamicResource BarColour}"
+            BorderBrush="{DynamicResource BorderColour}"
+            BorderThickness="1">
+		
+        <Grid RowDefinitions="28, 22, *, 28">
+			
+            <!-- Top Bar -->
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *, Auto">
+            
+                <!-- Window Title -->
+                <TextBlock Grid.Column="0"
+                           Text="{Binding TitleText, ElementName=Root}"
+                           FontSize="12"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"
+                           Margin="8,0,0,0"/>
+
+                <!-- Drag Bar -->
+                <Border Grid.Column="1"
+                        PointerPressed="DragBar_PointerPressed"
+                        Classes="drag-bar">
+					
+                    <Border Classes="drag-hatch"/>
+
+                </Border>
+
+                <!-- Close Button -->
+                <Button Grid.Column="2" Click="Cancel_Click" Classes="window-btn exit">
+                        
+                    <svg:Svg Path="/Assets/ButtonIcons/exit_button_icon.svg"
+                             Width="16"
+                             Height="16"/>
+
+                </Button>
+
+            </Grid>
+
+            <!-- Navigation Bar -->
+            <Grid Grid.Row="1" ColumnDefinitions="Auto, *">
+				
+                <!-- Navigation Buttons -->
+                <StackPanel Grid.Column="0">
+					
+                </StackPanel>
+
+                <!-- Breadcrumbs Buttons -->
+                <ItemsControl Grid.Column="1" ItemsSource="{Binding Breadcrumbs}">
+					
+                    <ItemsControl.ItemsPanel>
+						
+                        <ItemsPanelTemplate>
+							
+                            <StackPanel Orientation="Horizontal"/>
+
+                        </ItemsPanelTemplate>
+
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+						
+                        <DataTemplate x:DataType="filePicker:PathSegment">
+							
+                            <Button Click="Crumb_Click"
+                                    Classes="crumb"
+                                    Content="{Binding Label}"
+                                    Tag="{Binding FullPath}"/>
+
+                        </DataTemplate>
+
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+
+            </Grid>
+
+            <Grid Grid.Row="2" ColumnDefinitions="150, 5, *">
+				
+                <!-- Quick Access Button -->
+                <StackPanel Grid.Column="0" Orientation="Vertical"
+                            Background="{DynamicResource WindowColour}">
+					
+                </StackPanel>
+
+                <!-- File List -->
+                <ListBox Grid.Column="2"
+                         x:Name="FileList"
+                         ItemsSource="{Binding Items}"
+                         SelectionMode="{Binding PickerSelectionMode}"
+                         SelectionChanged="FileList_SelectionChanged"
+                         DoubleTapped="List_DoubleTapped"
+                         Background="{DynamicResource WindowColour}">
+                
+                    <ListBox.ItemsPanel>
+						
+                        <ItemsPanelTemplate>
+							
+                            <VirtualizingStackPanel Orientation="Vertical"/>
+
+                        </ItemsPanelTemplate>
+
+                    </ListBox.ItemsPanel>
+
+                    <ListBox.ItemTemplate>
+						
+                        <DataTemplate x:DataType="filePicker:FileItem">
+							
+                            <TextBlock Text="{Binding Name}"/>
+
+                        </DataTemplate>
+
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+            </Grid>
+
+            <!-- Bottom Bar -->
+            <Border Grid.Row="3" Padding="4">
+				
+                <StackPanel 
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+
+                    <Button Click="Open_Click" Classes="control-btn" Margin="2">
+					    Open
+                    </Button>
+
+                    <Button Click="Cancel_Click" Classes="control-btn" Margin="2">
+					    Cancel
+                    </Button>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+
+    </Border>
+
+</Window>

@@ -1,0 +1,108 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="ComboBox">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=WindowColour}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=TextColour}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=BorderColour}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="0"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="MinHeight" Value="20"/>
+        <Setter Property="Padding" Value="6,0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="MaxDropDownHeight" Value="180"/>
+    </Style>
+
+    <Style Selector="ComboBox:pointerover">
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=ImageSelectedBorderColour}"/>
+    </Style>
+
+    <Style Selector="ComboBox:focus">
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=ImageSelectedBorderColour}"/>
+    </Style>
+
+    <Style Selector="ComboBox:dropdownopen">
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=ImageSelectedBorderColour}"/>
+    </Style>
+
+    <Style Selector="ComboBox.big">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="MinHeight" Value="24"/>
+        <Setter Property="Padding" Value="8,0"/>
+        <Setter Property="MaxDropDownHeight" Value="280"/>
+    </Style>
+
+    <Style Selector="ComboBox /template/ Popup#PART_Popup">
+        <Setter Property="WindowManagerAddShadowHint" Value="True"/>
+    </Style>
+
+    <Style Selector="ComboBox /template/ Border#PopupBorder">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=WindowColour}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=BorderColour}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="0"/>
+    </Style>
+
+    <Style Selector="ComboBox /template/ Border#PART_PopupBorder">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=WindowColour}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=BorderColour}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="0"/>
+    </Style>
+
+    <Style Selector="ComboBox /template/ Border#DropDownBorder">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=WindowColour}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ResourceKey=BorderColour}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="0"/>
+    </Style>
+
+    <Style Selector="ComboBox /template/ Border">
+        <Setter Property="CornerRadius" Value="0"/>
+    </Style>
+
+    <Style Selector="ComboBoxItem">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=TextColour}"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Padding" Value="8,2"/>
+        <Setter Property="MinHeight" Value="20"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Name="PART_ItemRoot"
+                        Background="{TemplateBinding Background}"
+                        Padding="{TemplateBinding Padding}">
+
+                    <ContentPresenter Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <Style Selector="ComboBox.big ComboBoxItem">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Padding" Value="10,4"/>
+        <Setter Property="MinHeight" Value="24"/>
+    </Style>
+
+    <Style Selector="ComboBoxItem:pointerover">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=ParentMenuHoverColour}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=TextColour}"/>
+    </Style>
+
+    <Style Selector="ComboBoxItem:selected">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=ParentMenuHoverColour}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=TextColour}"/>
+    </Style>
+
+    <Style Selector="ComboBoxItem:selected:pointerover">
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=TextColour}"/>
+    </Style>
+
+</Styles>

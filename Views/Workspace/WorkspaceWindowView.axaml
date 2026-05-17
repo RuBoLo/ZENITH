@@ -1,0 +1,70 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:svg="clr-namespace:Avalonia.Svg.Skia;assembly=Svg.Controls.Skia.Avalonia"
+             xmlns:documentVm="using:ZENITH.ViewModels.Documents"
+             xmlns:documentViews="using:ZENITH.Views.Documents"
+             xmlns:operatorVm="using:ZENITH.ViewModels.Operators"
+             xmlns:operatorViews="using:ZENITH.Views.Operators"
+             xmlns:workspace="using:ZENITH.ViewModels.Workspace"
+             x:Class="ZENITH.Views.Workspace.WorkspaceWindowView"
+             x:DataType="workspace:WorkspaceItemViewModel"
+             Width="{Binding Width}"
+             Height="{Binding Height}">
+
+    <UserControl.Styles>
+        <Style Selector="Border.workspace-window">
+            <Setter Property="BorderBrush" Value="{DynamicResource ImageBorderColour}"/>
+        </Style>
+
+        <Style Selector="Border.workspace-window.selected">
+            <Setter Property="BorderBrush" Value="{DynamicResource ImageSelectedBorderColour}"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Border Background="{DynamicResource WindowColour}"
+            Classes="workspace-window"
+            Classes.selected="{Binding IsSelected}"
+            BorderThickness="2">
+
+        <Grid RowDefinitions="18,*">
+            <Grid Grid.Row="0"
+                  Background="{DynamicResource WindowColour}"
+                  ColumnDefinitions="*,Auto">
+
+                <Border x:Name="TitleBar"
+                        Grid.Column="0"
+                        Background="Transparent">
+                    <TextBlock Text="{Binding Title}"
+                               Foreground="{DynamicResource TextColour}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+
+                <Button Grid.Column="1"
+                        Command="{Binding CloseCommand}"
+                        Classes="window-btn exit">
+                    <svg:Svg Path="/Assets/ButtonIcons/exit_button_icon.svg"
+                             Width="16"
+                             Height="16"/>
+                </Button>
+            </Grid>
+
+            <ContentControl Grid.Row="1"
+                            Content="{Binding}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                <ContentControl.DataTemplates>
+                    <DataTemplate DataType="documentVm:ImageDocumentViewModel">
+                        <documentViews:ImageDocumentView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="operatorVm:IntegrationWindowViewModel">
+                        <operatorViews:IntegrationWindowView/>
+                    </DataTemplate>
+                </ContentControl.DataTemplates>
+            </ContentControl>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+.dotnet/
+Swap/
+
+*.user
+*.suo
+*.rsuser
+*.log
+
+.env
+.env.*

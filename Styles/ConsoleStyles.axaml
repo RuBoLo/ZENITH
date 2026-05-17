@@ -1,0 +1,59 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="Border.console-panel">
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderColour}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+
+    <Style Selector="TextBlock.console-count">
+        <Setter Property="Foreground" Value="#6A6A6A"/>
+        <Setter Property="FontSize" Value="11"/>
+    </Style>
+
+    <Style Selector="Border.console-output">
+        <Setter Property="Background" Value="{DynamicResource ConsoleBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource WindowColour}"/>
+        <Setter Property="BorderThickness" Value="1,0"/>
+    </Style>
+
+    <Style Selector="TextBlock.console-prompt">
+        <Setter Property="Foreground" Value="#005A9E"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+
+    <Style Selector="TextBlock.console-time">
+        <Setter Property="Foreground" Value="#6A6A6A"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="FontSize" Value="11"/>
+    </Style>
+
+    <Style Selector="TextBlock.console-line">
+        <Setter Property="Foreground" Value="#CCCCCC"/>
+        <Setter Property="FontFamily" Value="Consolas"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="LineHeight" Value="16"/>
+    </Style>
+
+    <Style Selector="TextBlock.console-line.system">
+        <Setter Property="Foreground" Value="#B922C7"/>
+    </Style>
+
+    <Style Selector="TextBlock.console-line.command">
+        <Setter Property="Foreground" Value="#005A9E"/>
+    </Style>
+
+    <Style Selector="TextBlock.console-line.error">
+        <Setter Property="Foreground" Value="#C50F1F"/>
+    </Style>
+
+    <Style Selector="TextBlock.console-line.warning">
+        <Setter Property="Foreground" Value="#DB7C00"/>
+    </Style>
+
+    <Style Selector="TextBlock.console-line.success">
+        <Setter Property="Foreground" Value="#13990C"/>
+    </Style>
+
+</Styles>

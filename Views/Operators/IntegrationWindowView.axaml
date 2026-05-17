@@ -1,0 +1,88 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:operators="using:ZENITH.ViewModels.Operators"
+             x:Class="ZENITH.Views.Operators.IntegrationWindowView"
+             x:DataType="operators:IntegrationWindowViewModel">
+
+    <Border Background="{DynamicResource BarColour}">
+		
+        <Grid RowDefinitions="*, 28">
+			
+            <!-- Content -->
+            <Border Grid.Row="0"
+                    Background="{DynamicResource WindowColour}"
+                    Padding="12">
+            
+                <StackPanel Spacing="4">
+
+                    <TextBlock Text="Frames"/>
+
+                    <ListBox Height="160"
+                             ItemsSource="{Binding Frames}">
+
+                    </ListBox>
+
+                    <StackPanel Orientation="Horizontal" Spacing="4">
+
+                        <Button Classes="control-btn"
+                                Click="AddFrames_Click"
+                                Content="Add"/>
+
+                        <Button Classes="control-btn"
+                                Content="Remove"/>
+
+                    </StackPanel>
+
+                    <TextBlock Text="Stacking algorithm"/>
+
+                    <ComboBox HorizontalAlignment="Stretch"
+                              ItemsSource="{Binding StackingAlgorithms}"
+                              SelectedItem="{Binding SelectedStackingAlgorithm}">
+
+                    </ComboBox>
+
+                    <TextBlock Text="Rejection algorithm"/>
+
+                    <ComboBox HorizontalAlignment="Stretch"
+                              ItemsSource="{Binding RejectionAlgorithms}"
+                              SelectedItem="{Binding SelectedRejectionAlgorithm}">
+
+                    </ComboBox>
+
+                    <TextBlock Text="{Binding Status}"
+                               FontSize="11"
+                               Foreground="#888888"
+                               Margin="0,8,0,2"/>
+
+                    <ProgressBar Value="{Binding Progress}"
+                                 Minimum="0" Maximum="1"
+                                 Height="10"/>
+
+                </StackPanel>
+            
+            </Border>
+
+            <Border Grid.Row="1" Padding="4">
+				
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                
+                    <Button Classes="control-btn"
+                            Command="{Binding ExecuteCommand}"
+                            Content="Execute"
+                            Margin="2"/>
+
+                    <Button Classes="control-btn"
+                            Command="{Binding HaltCommand}"
+                            Content="Halt"
+                            Margin="2"/>
+                
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+
+    </Border>
+
+</UserControl>
